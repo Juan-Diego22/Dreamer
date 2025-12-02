@@ -2,6 +2,8 @@
 
 A fast, elegant, and efficient translation application built with the modern React ecosystem.
 
+![Dreamer Translator](screenshorts/Dreamer-translator.png) 
+
 ## ✨ Key Features
 
 * **Real-Time Translation:** Uses Debounce to optimize the typing experience.
