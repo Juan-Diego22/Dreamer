@@ -2,7 +2,7 @@
 
 A fast, elegant, and efficient translation application built with React.
 
-**Live Demo**: [Click here to visit Dreamer Translator!](https://soñador-siete.vercel.app)
+**Live Demo**: [Click here to visit Dreamer Translator!](https://dreamer-seven.vercel.app/)
 
 ![Dreamer Translator](screenshot/Dreamer-translator.png) 
 
