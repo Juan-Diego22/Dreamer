@@ -1,0 +1,215 @@
+:root {
+  /* Color extraído de tu logo Dreamer */
+  --primary-color: #288058; 
+  --dark-bg: #12181b;
+  --card-bg: rgba(28, 30, 34, 0.9);
+  --border-color: #4d5562;
+  --text-color: #f9f9f9;
+  --text-muted: #798290;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Fondo espacial de alta calidad */
+  background-image: url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- HEADER & LOGO --- */
+header {
+  margin-bottom: 40px;
+}
+
+.logo-img {
+  height: 80px; /* Ajusta esto según el tamaño de tu imagen */
+  border-radius: 10px;
+  
+}
+
+/* --- GRID PRINCIPAL --- */
+.traductor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 20px;
+  width: 100%;
+}
+
+/* En móviles, poner una columna debajo de la otra */
+@media (max-width: 768px) {
+  .traductor-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- TARJETAS (CARDS) --- */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow:  0 0 4px var(--primary-color);
+  border-radius: 25px; 
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 500px;
+  position: relative;
+  backdrop-filter: blur(10px); /* Efecto vidrio */
+  z-index: 1;
+}
+
+
+.card-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+/* --- SELECTORES Y TEXTO --- */
+.label-idioma {
+  font-size: 14px;
+  color: var(--text-color);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.selector-idioma {
+  background: transparent;
+  color: var(--text-color);
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+}
+
+.selector-idioma option {
+  background-color: var(--dark-bg); /* Opciones oscuras */
+}
+
+.text-area {
+  width: 100%;
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  resize: none;
+  color: var(--text-color);
+  font-size: 18px;
+  font-family: inherit;
+  outline: none;
+}
+
+.text-area.resultado {
+  color: var(--text-color);
+}
+
+/* --- FOOTER DE LA TARJETA --- */
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.iconos-accion {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  color: var(--text-color);
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-icon:hover {
+  background-color: rgba(255,255,255,0.1);
+  border-color: var(--primary-color);
+}
+
+.btn-traducir {
+  background-color: var(--primary-color); 
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.btn-traducir:hover {
+  transform: scale(1.05);
+}
+
+/* --- ESTILOS PARA LOS BOTONES DE IDIOMA (TABS) --- */
+
+/* Contenedor de las pestañas */
+.language-tabs {
+  display: flex;
+  align-items: center;  
+  gap: 15px; /* Pequeño espacio entre botones */
+}
+
+/* Botones individuales de idioma */
+.lang-button {
+  background: transparent;
+  color: var(--text-color); /* Color gris tenue */
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s, background-color 0.2s;
+  outline: none;
+}
+
+.lang-button:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.05); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: var(--text-color); /* Mantener el color gris tenue */
+}
+
+/* Estado ACTIVO: El idioma seleccionado */
+.lang-button.active {
+  color: var(--primary-color); /* Texto en tu color Mint */
+}
+
+/* Ajuste del header en la tarjeta output para alinear el botón de intercambio */
+.output-card .card-header {
+  justify-content: space-between;
+}
