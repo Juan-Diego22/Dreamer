@@ -1,6 +1,6 @@
 # 🌌 Dreamer Translator
 
-A fast, elegant, and efficient translation application built with the modern React ecosystem.
+A fast, elegant, and efficient translation application built with React.
 
 ![Dreamer Translator](screenshot/Dreamer-translator.png) 
 
@@ -26,7 +26,5 @@ A fast, elegant, and efficient translation application built with the modern Rea
 <img src="https://img.shields.io/badge/MyMemory%20API-4A90E2?style=for-the-badge&logo=api&logoColor=white" />
 
 
-## 🚀 Demo
-[You can put the link here when you upload it to Vercel or Netlify]
 
 
