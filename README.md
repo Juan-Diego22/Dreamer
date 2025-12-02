@@ -2,7 +2,7 @@
 
 A fast, elegant, and efficient translation application built with the modern React ecosystem.
 
-![Dreamer Translator](screenshorts/Dreamer-translator.png) 
+![Dreamer Translator](screenshot/Dreamer-translator.png) 
 
 ## ✨ Key Features
 
