@@ -1,5 +1,4 @@
-:root {
-  /* Color extraído de tu logo Dreamer */
+:root {   
   --primary-color: #288058; 
   --dark-bg: #12181b;
   --card-bg: rgba(28, 30, 34, 0.9);
@@ -157,7 +156,7 @@ header {
 
 .btn-icon:hover {
   background-color: rgba(255,255,255,0.1);
-  border-color: var(--primary-color);
+  
 }
 
 .btn-traducir {
@@ -212,4 +211,54 @@ header {
 /* Ajuste del header en la tarjeta output para alinear el botón de intercambio */
 .output-card .card-header {
   justify-content: space-between;
+}
+
+/* --- BOTÓN DE LIMPIAR TEXTO (X) --- */
+
+/* Contenedor relativo para posicionar la X dentro del área */
+.textarea-wrapper {
+  position: relative;
+  width: 100%;
+  flex-grow: 1; /* Ocupa el espacio disponible en la tarjeta */
+  display: flex;
+}
+
+/* El botón X flotante */
+.btn-clear {
+  position: absolute;
+  top: 5px;   /* Ajusta la distancia desde arriba */
+  right: 5px; /* Ajusta la distancia desde la derecha */
+  background: transparent;
+  border: none;
+  color: var(--text-muted); /* Color gris suave */
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-clear:hover {
+  background-color: rgba(255, 255, 255, 0.041); /* Fondo sutil al pasar el mouse */
+  color: var(--text-color); /* Se vuelve blanco */
+  border-radius: 100%;
+}
+
+/* --- CONTADOR DE CARACTERES --- */
+
+/* Agrupa el contador y el botón a la derecha */
+.action-group {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre el contador y el botón */
+}
+
+.char-counter {
+  color: var(--text-muted); /* Color gris suave */
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }

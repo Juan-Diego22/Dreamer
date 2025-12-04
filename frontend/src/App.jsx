@@ -70,6 +70,14 @@ function App() {
     alert("Texto copiado!"); 
   };
 
+  // Función para borrar todo el contenido
+  const limpiarTexto = () => {
+    setTextoInput('');       // Borra el texto del usuario
+    setTextoTraducido('');   // Borra la traducción anterior
+    setIdiomaDetectado('un');// Resetea el detector a 'unknown'
+    setAutoMode(true);       // (Opcional) Vuelve al modo automático
+  };
+
   return (
     <div className="app-container">
       <header>
@@ -112,22 +120,38 @@ function App() {
              </div>
           </div>
           
-          <textarea 
-            value={textoInput}
-            onChange={(e) => setTextoInput(e.target.value)}
-            maxLength="500"
-            className="text-area"
-            placeholder="Type text here to translate..."
-          />
+          <div className="textarea-wrapper">
+            <textarea 
+              value={textoInput}
+              onChange={(e) => setTextoInput(e.target.value)}
+              maxLength="500"
+              className="text-area"
+              placeholder="Type text here to translate..."
+           />
+           {/* SOLO MUESTRA LA X SI HAY TEXTO */}
+            {textoInput && (
+              <button className="btn-clear" onClick={limpiarTexto} title="Delete text"> 
+                ✕
+              </button>
+            )}
+          </div> 
+          
           
           <div className="card-footer">
             <div className="iconos-accion">
                <button className="btn-icon" onClick={() => hablarTexto(textoInput, idiomaOrigen)}>🔊</button>
                <button className="btn-icon" onClick={() => copiarPortapapeles(textoInput)}>📋</button>
             </div>
-            <button className="btn-traducir" disabled={cargando}>
-               {cargando ? 'Translating...' : 'Translate'}
-            </button>
+            <div className="action-group">
+              {/* El contador se actualiza solo: longitud actual / límite */}
+               <span className="char-counter">
+                 {textoInput.length} / 500
+               </span>
+              <button className="btn-traducir" disabled={cargando}>
+                {cargando ? 'Translating...' : 'Translate'}
+              </button>
+            </div>
+           
           </div>
         </div>
 
