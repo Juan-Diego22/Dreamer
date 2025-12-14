@@ -132,6 +132,59 @@ header {
   background-color: var(--dark-bg); /* Opciones oscuras */
 }
 
+/* --- ESTILOS PARA EL NUEVO MENÚ DESPLEGABLE DE IDIOMAS --- */
+
+.selector-idioma-dropdown {
+    /* Mantenemos la base */
+    background: transparent;
+    color: var(--text-color);
+    
+    /* CLAVE: Asegura que no haya bordes ni sombras de caja nativas */
+    border: none;
+    box-shadow: none;
+    font-size: 14px; 
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    
+    /* Padding ajustado para coincidir con los botones rápidos, 
+       pero damos espacio extra a la derecha para la flecha */
+    padding: 8px 25px 8px 12px; 
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    
+    /* Eliminamos la apariencia nativa para mostrar la flecha SVG */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    /* Estilos de la flecha SVG */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23f9f9f9'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 10.99l3.71-3.76a.75.75 0 111.08 1.04l-4.25 4.31a.75.75 0 01-1.08 0l-4.25-4.31a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 1em; 
+}
+
+/* Efecto hover */
+.selector-idioma-dropdown:hover {
+    background-color: rgba(255, 255, 255, 0.05); 
+    color: var(--text-color);
+}
+
+/* Estado activo */
+.selector-idioma-dropdown.active {
+    color: var(--primary-color);
+    background-color: rgba(40, 128, 88, 0.1); 
+}
+
+/* Estilos para las opciones individuales del dropdown */
+.selector-idioma-dropdown option {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color); /* Texto blanco */
+  padding: 5px; /* Pequeño padding para que se vea mejor */
+}
+
 .text-area {
   width: 100%;
   flex-grow: 1;
@@ -204,7 +257,8 @@ header {
   display: flex;
   align-items: center;  
   gap: 15px; /* Pequeño espacio entre botones */
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Permite que los botones se ajusten en pantallas pequeñas */ 
+  
 }
 
 /* Botones individuales de idioma */
