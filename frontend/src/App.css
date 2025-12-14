@@ -47,12 +47,26 @@ header {
   
 }
 
+/*Definir la animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* --- GRID PRINCIPAL --- */
 .traductor-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
   gap: 20px;
   width: 100%;
+  justify-items: center;
+  animation: fadeInUp 0.6s ease-out; /* Entrada suave */
 }
 
 /* En móviles, poner una columna debajo de la otra */
@@ -71,11 +85,19 @@ header {
   padding: 25px;
   display: flex;
   flex-direction: column;
-  height: 350px;
-  width: 500px;
+  height: auto;
+  width: 100%;
+  max-width: 500px;
+  min-height: 350px;
   position: relative;
   backdrop-filter: blur(10px); /* Efecto vidrio */
   z-index: 1;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 8px var(--primary-color);
 }
 
 
@@ -124,6 +146,7 @@ header {
 
 .text-area.resultado {
   color: var(--text-color);
+  transition: opacity 0.3s ease;
 }
 
 /* --- FOOTER DE LA TARJETA --- */
@@ -181,6 +204,7 @@ header {
   display: flex;
   align-items: center;  
   gap: 15px; /* Pequeño espacio entre botones */
+  flex-wrap: wrap;
 }
 
 /* Botones individuales de idioma */
@@ -193,7 +217,7 @@ header {
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
-  transition: color 0.2s, background-color 0.2s;
+  transition: all 0.2s ease;
   outline: none;
 }
 
@@ -206,7 +230,10 @@ header {
 /* Estado ACTIVO: El idioma seleccionado */
 .lang-button.active {
   color: var(--primary-color); /* Texto en tu color Mint */
+  transform: scale(1.05); /* Se agranda ligeramente el activo */
 }
+
+
 
 /* Ajuste del header en la tarjeta output para alinear el botón de intercambio */
 .output-card .card-header {
@@ -261,4 +288,43 @@ header {
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.5px;
+}
+
+/* --- MEDIA QUERIES MEJORADOS --- */
+
+@media (max-width: 900px) {
+  .traductor-grid {
+    /* En tablets o pantallas medianas, una sola columna */
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .card {
+    /* En móvil queremos que aprovechen más el ancho */
+    max-width: 100%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 10px;
+  }
+
+  .logo-img {
+    height: 60px; /* Logo un poco más pequeño en móviles */
+  }
+
+  .card {
+    padding: 15px;
+    min-height: 300px;
+  }
+
+  .text-area {
+    font-size: 16px; /* Texto un poco más pequeño para leer mejor */
+  }
+
+  .lang-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 }
