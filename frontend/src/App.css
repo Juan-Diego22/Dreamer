@@ -344,6 +344,199 @@ header {
   letter-spacing: 0.5px;
 }
 
+/* --- HISTORIAL DE TRADUCCIONES --- */
+
+.historial-container {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 50px;
+    padding: 20px;
+    animation: fadeInUp 0.8s ease-out; /* Entrada suave */
+}
+
+.historial-title {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.historial-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto; /* Permite scroll horizontal para ver todas las entradas */
+    padding-bottom: 10px;
+    
+    /* Ocultar la barra de desplazamiento */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.historial-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.historial-item {
+    /* Basado en la clase .card, pero ajustado para ser más pequeño */
+    flex-shrink: 0; /* No se encoje */
+    width: 300px; /* Ancho fijo para cada tarjeta de historial */
+    min-height: 150px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    /* Remover la sombra de la card por defecto al hacer hover para la animación */
+    box-shadow: 0 0 4px var(--primary-color);
+}
+
+.historial-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 8px var(--primary-color);
+}
+
+.historial-lang {
+    font-size: 14px;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.historial-original {
+    font-size: 16px;
+    color: var(--text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+}
+
+.historial-traducido {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+/* --- BOTÓN DE HISTORIAL (Al estilo Google Translate) --- */
+
+.btn-historial {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 4px var(--primary-color);
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin-top: 30px;
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.btn-historial:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 8px var(--primary-color);
+}  
+
+.btn-historial .icon {
+    font-size: 20px;
+}
+
+
+/* --- MODAL/PANEL DEL HISTORIAL --- */
+
+.historial-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro transparente */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Colocarlo arriba, no en el centro */
+    padding-top: 5vh;
+}
+
+.historial-panel {
+    background-color: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh; /* Altura máxima para evitar que ocupe toda la pantalla */
+    display: flex;
+    flex-direction: column;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.historial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.historial-header h2 {
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+.historial-list {
+    overflow-y: auto; /* Permite scroll solo en la lista */
+    padding: 20px;
+}
+
+.historial-item {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(121, 130, 144, 0.2); /* Línea divisoria tenue */
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.historial-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.historial-lang {
+    font-size: 15px;
+    color: var(--primary-color);
+    font-weight: bold;
+    padding-left: 10px;
+    
+}
+
+.historial-original {
+    font-size: 13px;
+    color: var(--text-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; /* Mantiene en una sola línea */
+    padding-left: 3px;
+}
+
+.historial-tip {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* RESPONSIVE: En móvil, las tarjetas de historial se hacen más angostas */
+@media (max-width: 480px) {
+  .historial-item {
+    width: 250px; 
+  }
+}
+
 /* --- MEDIA QUERIES MEJORADOS --- */
 
 @media (max-width: 900px) {

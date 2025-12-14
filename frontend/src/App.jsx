@@ -8,9 +8,9 @@ const idiomas = [
   { code: 'en', name: 'English' },
   { code: 'es', name: 'Spanish' },
   { code: 'fr', name: 'French' },
-  { code: 'de', name: 'German' },      // Nuevo
-  { code: 'it', name: 'Italian' },     // Nuevo
-  { code: 'pt', name: 'Portuguese' },  // Nuevo
+  { code: 'de', name: 'German' },      
+  { code: 'it', name: 'Italian' },     
+  { code: 'pt', name: 'Portuguese' },  
 ];
 
 const obtenerNombreIdioma = (code) => {
@@ -29,9 +29,38 @@ function App() {
   const [idiomaDestino, setIdiomaDestino] = useState('es');
   const [cargando, setCargando] = useState(false);
   const [idiomaDetectado, setIdiomaDetectado] = useState('un');
+  const [historial, setHistorial] = useState([]);
+  const [mostrarHistorial, setMostrarHistorial] = useState(false);
   
   // CORRECCIÓN 1: Nuevo estado para saber si estamos en modo automático
   const [autoMode, setAutoMode] = useState(true); 
+
+  const guardarTraduccion = (original, traducido, origenCode, destinoCode) => {
+    if (!original || !traducido) return;
+
+    const nuevaEntrada = {
+      id: Date.now(), // Un ID único
+      original,
+      traducido,
+      origen: obtenerNombreIdioma(origenCode),
+      destino: obtenerNombreIdioma(destinoCode),
+      origenCode: origenCode, // Códigos para re-traducir
+      destinoCode: destinoCode,
+    };
+
+    setHistorial(prevHistorial => {
+      // 1. Filtrar duplicados (si la frase y el destino son iguales)
+      const historialFiltrado = prevHistorial.filter(item => 
+        item.original !== original || item.destinoCode !== destinoCode
+      );
+      
+      // 2. Agregar la nueva entrada al inicio
+      const nuevoHistorial = [nuevaEntrada, ...historialFiltrado];
+      
+      // 3. Limitar a un máximo de 10 entradas
+      return nuevoHistorial.slice(0, 10);
+    });
+  };
 
   useEffect(() => {
     const realizarTraduccion = async () => {
@@ -52,7 +81,13 @@ function App() {
       setTextoTraducido(translatedText);
       setIdiomaDetectado(detectedLang || 'un'); 
       setCargando(false);
+
+      // Guardar en historial
+      const idiomaRealOrigen = detectedLang && detectedLang !== 'un' ? detectedLang : idiomaOrigen;
+      guardarTraduccion(textoInput, translatedText, idiomaRealOrigen, idiomaDestino);
+    
     };
+
 
     const timeoutId = setTimeout(realizarTraduccion, 500);
 
@@ -80,6 +115,19 @@ function App() {
     setIdiomaDetectado('un');// Resetea el detector a 'unknown'
     setAutoMode(true);       // (Opcional) Vuelve al modo automático
   };
+
+  // NUEVO: Función para cargar una entrada del historial
+  const cargarHistorial = (item) => {
+    // Usar la traducción como nueva entrada
+    setTextoInput(item.original);
+    
+    // Configurar los idiomas de la traducción guardada
+    setIdiomaOrigen(item.origenCode);
+    setIdiomaDestino(item.destinoCode);
+    
+    // Desactivar el modo auto si estaba activo
+    setAutoMode(false);
+  };  
 
   return (
     <div className="app-container">
@@ -230,6 +278,51 @@ function App() {
           </div>
         </div>
       </main>
+      
+      {/* NUEVO: BOTÓN DE HISTORIAL */}
+      {historial.length > 0 && (
+          <button 
+              className="btn-historial"
+              onClick={() => setMostrarHistorial(true)}
+              title="Ver Historial de Traducciones Recientes"
+          >
+             <span className="icon">⏱️</span> Historial
+          </button>
+      )}
+
+      {/* NUEVO: MODAL/PANEL DEL HISTORIAL */}
+      {mostrarHistorial && (
+        <div className="historial-modal-overlay" onClick={() => setMostrarHistorial(false)}>
+          <div className="historial-panel" onClick={e => e.stopPropagation()}>
+            <div className="historial-header">
+              <h2>Recent Translations</h2>
+              <button 
+                  className="btn-icon btn-close" 
+                  onClick={() => setMostrarHistorial(false)}
+              >
+                  ✕
+              </button>
+            </div>
+            
+            <div className="historial-list">
+              {historial.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="historial-item"
+                  onClick={() => cargarHistorial(item)} 
+                >
+                  <p className="historial-lang">
+                    {item.origen} → {item.destino}
+                  </p>
+                  <p className="historial-original">{item.original}</p>
+                </div>
+              ))}
+              <p className="historial-tip">Click on an item to load it into the translator.</p>
+            </div>
+          </div>
+        </div>
+      )}       
+
     </div>
   );
 }
