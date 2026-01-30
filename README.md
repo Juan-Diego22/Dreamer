@@ -22,7 +22,7 @@
 
 ---
 
-## ✨ Características Principales
+##  Características Principales
 
 ### 🔄 **Traducción en Tiempo Real**
 - Traducción instantánea mientras escribes
@@ -89,7 +89,7 @@ Antes de comenzar, asegúrate de tener instalado:
 
 ---
 
-## 🚀 Instalación y Configuración
+##  Instalación y Configuración
 
 ### 1️⃣ Clonar el repositorio
 
@@ -140,36 +140,6 @@ yarn build
 ```
 
 Los archivos optimizados se generarán en la carpeta `dist/`
-
----
-
-## 📁 Estructura del Proyecto
-
-```
-Dreamer/
-│
-├── frontend/                      # Código fuente de la aplicación
-│   ├── src/                       # Carpeta principal de código
-│   │   ├── components/            # Componentes React reutilizables
-│   │   ├── hooks/                 # Custom Hooks
-│   │   ├── utils/                 # Utilidades y helpers
-│   │   ├── styles/                # Archivos CSS globales
-│   │   ├── App.jsx                # Componente principal
-│   │   └── main.jsx               # Punto de entrada
-│   ├── public/                    # Archivos públicos estáticos
-│   └── index.html                 # HTML base
-│
-├── screenshot/                    # Capturas de pantalla
-│   └── DreamerTranslator.png     # Screenshot principal
-│
-├── node_modules/                  # Dependencias (no incluido en Git)
-├── .gitignore                     # Archivos ignorados por Git
-├── package.json                   # Configuración y dependencias
-├── package-lock.json              # Versiones exactas de dependencias
-├── vercel.json                    # Configuración de Vercel
-├── vite.config.js                 # Configuración de Vite
-└── README.md                      # Este archivo
-```
 
 ---
 
